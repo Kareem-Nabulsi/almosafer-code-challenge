@@ -1,8 +1,8 @@
 # code-challenge-almosafer
 
 This repository includes the solution for both:
-- **[Challenge 1](https://github.com/Kareem-Nabulsi/code-challenge-almosafer/blob/main/challenge1.py)**
-- **[Challenge 2](https://github.com/Kareem-Nabulsi/code-challenge-almosafer/blob/main/challenge2.py)**
+- **[Challenge 1](https://github.com/Kareem-Nabulsi/almosafer-code-challenge/blob/main/challenge1.py)**
+- **[Challenge 2](https://github.com/Kareem-Nabulsi/almosafer-code-challenge/blob/main/challenge2.py)**
 
 ## Overview
 
@@ -37,5 +37,4 @@ To run the code and replicate the solutions, follow these steps:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/Kareem-Nabulsi/code-challenge-almosafer.git
-   cd code-challenge-almosafer
+   git clone https://github.com/Kareem-Nabulsi/almosafer-code-challenge.git
