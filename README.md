@@ -1,4 +1,4 @@
-# code-challenge-almosafer
+# Code Challenge
 
 This repository includes the solution for both:
 - **[Challenge 1](https://github.com/Kareem-Nabulsi/almosafer-code-challenge/blob/main/challenge1.py)**
