@@ -94,7 +94,7 @@ try:
                 'order_no': row_L1['order_no'],
                 'dim_bookingdate_id': row_L1['dim_bookingdate_id'],
                 'dim_store_id': row_L1['dim_store_id'],
-                'service_fee_code': row_L1['product_name'] if row_L1['product_type'] == 'rule' else None,
+                'service_fee_code': row_L1['product_name'] if row_L1['product_type'].strip().lower() == 'rule' and row_L1['product_name'] else None,
                 'dim_customer_id': row_L1['dim_customer_id'],
                 'dim_language': row_L1['dim_language'],
                 'dim_totals_currency': row_L1['dim_totals_currency'],
