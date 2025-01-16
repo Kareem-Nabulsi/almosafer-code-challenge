@@ -37,18 +37,6 @@ L1_query = "SELECT * FROM l1;"
 L2_query = "SELECT * FROM l2;"
 
 
-# Function to trim the decimal to 2 places without rounding
-def trim_decimal(value):
-    # Convert the value to a string, then split at the decimal point
-    str_value = str(value)
-    if '.' in str_value:
-        integer_part, decimal_part = str_value.split('.')
-        # Trim the decimal part to 2 characters
-        decimal_part = decimal_part[:2]
-        return f"{integer_part}.{decimal_part}"
-    return str_value
-
-
 # Execute the queries and fetch the results into DataFrames
 try:
     # Create engine to connect to PostgreSQL
@@ -110,9 +98,9 @@ try:
                 'selling_price': row_L1['selling_price'],
                 'selling_price_vat': row_L1['selling_price_vat'],
                 'ibv': row_L1['ibv'],
-                'iov_usd': trim_decimal(row_L1['ibv'] * row_L1['conversion_rate_usd']),
+                'iov_usd': row_L1['ibv'] * row_L1['conversion_rate_usd'],
                 'gbv': row_L1['gbv'],
-                'gbv_usd': trim_decimal(row_L1['gbv'] * row_L1['conversion_rate_usd']),
+                'gbv_usd': row_L1['gbv'] * row_L1['conversion_rate_usd'],
             }
             transformed_L1.append(transformed_row)
 
@@ -145,7 +133,7 @@ try:
             
             # Handle numerical values (int or float)
             if isinstance(val1, (int, float)) and isinstance(val2, (int, float)):
-                return abs(val1 - val2) > 0.01  # Tolerance for float comparisons
+                return val1 != val2
             
             # If they are both strings, we compare them directly
             if isinstance(val1, str) and isinstance(val2, str):
