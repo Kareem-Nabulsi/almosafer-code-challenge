@@ -47,6 +47,39 @@ QUERIES = {
         FROM customer_table
         GROUP BY first_name, last_name
         HAVING COUNT(DISTINCT email) > 1 OR COUNT(DISTINCT address) > 1;
+    """,
+    "Invalid Birthdate Formats": """
+        SELECT id, birthdate
+        FROM customer_table
+        WHERE birthdate IS NOT NULL AND birthdate !~ '^\\d{4}-\\d{2}-\\d{2}$';
+    """,
+    "Invalid Zip Codes": """
+        SELECT id, zip_code
+        FROM customer_table
+        WHERE zip_code IS NOT NULL AND zip_code !~ '^\\d{5}$';
+    """,
+    "Invalid States": """
+        SELECT id, state
+        FROM customer_table
+        WHERE state IS NOT NULL AND state NOT IN (
+            'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 
+            'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 
+            'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
+        );
+    """,
+    "Invalid Addresses": """
+        SELECT id, address
+        FROM customer_table
+        WHERE address IS NULL OR address !~ '[A-Za-z0-9]';
+    """,
+    "Security Validation": """
+        SELECT id, first_name, last_name, email, phone_number, address
+        FROM customer_table
+        WHERE LENGTH(first_name) > 50
+        OR LENGTH(last_name) > 50
+        OR LENGTH(email) > 100
+        OR LENGTH(phone_number) > 20
+        OR LENGTH(address) > 200;
     """
 }
 
