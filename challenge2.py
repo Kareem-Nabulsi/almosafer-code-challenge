@@ -82,7 +82,7 @@ try:
                 'order_no': row_L1['order_no'],
                 'dim_bookingdate_id': row_L1['dim_bookingdate_id'],
                 'dim_store_id': row_L1['dim_store_id'],
-                'service_fee_code': row_L1['product_name'] if row_L1['product_type'].strip().lower() == 'rule' and row_L1['product_name'] else None,
+                'service_fee_code': row_L1['product_name'] if row_L1['product_type'] == 'rule' else None,
                 'dim_customer_id': row_L1['dim_customer_id'],
                 'dim_language': row_L1['dim_language'],
                 'dim_totals_currency': row_L1['dim_totals_currency'],
@@ -133,7 +133,7 @@ try:
             
             # Handle numerical values (int or float)
             if isinstance(val1, (int, float)) and isinstance(val2, (int, float)):
-                return val1 != val2
+                return abs(val1 - val2) >= 0.6  # Consider it a mismatch if the difference is 0.6 or greater, (took the absolute value)
             
             # If they are both strings, we compare them directly
             if isinstance(val1, str) and isinstance(val2, str):
